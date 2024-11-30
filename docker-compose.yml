@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:17
+    container_name: bookkeeper_postgres
+    env_file:
+      - ./be_booktracker/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  django:
+    build: ./be_booktracker
+    container_name: bookkeeper_django
+    env_file:
+      - ./be_booktracker/.env
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./be_booktracker:/usr/src/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
