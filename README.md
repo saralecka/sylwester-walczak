@@ -1,59 +1,74 @@
 # Book Tracker
 
-**Book Tracker** to aplikacja do zarządzania książkami, pozwalająca na dodawanie książek, zarządzanie danymi użytkowników oraz integrację z bazą danych PostgreSQL. Projekt zawiera backend oparty na Django oraz frontend w Next.js.
+**Book Tracker** is an application for managing books, allowing users to add books, manage user data, and integrate with a PostgreSQL database. The project includes a backend built with Django and a frontend with Next.js.
 
-## Uruchamianie aplikacji
+## Running the Application
 
-### 1. Prerekwizyty
+### 1. Prerequisites
 
-Aby uruchomić aplikację, musisz mieć zainstalowane:
+To run the application, you need to have the following installed:
 
-- [Docker](https://www.docker.com/get-started) (do uruchomienia aplikacji w kontenerach)
-- [Docker Compose](https://docs.docker.com/compose/install/) (do łatwego zarządzania wieloma kontenerami)
+- [Docker](https://www.docker.com/get-started) (for running the application in containers)
+- [Docker Compose](https://docs.docker.com/compose/install/) (for easily managing multiple containers)
 
-### 2. Uruchomienie aplikacji
+### 2. Running the Application
 
-1. **Uruchomienie wszystkich serwisów** (Django, Next.js, PostgreSQL):
+1. **Start all services** (Django, Next.js, PostgreSQL):
 
 ```bash
 ./lunch.sh
 ```
 
-Skript `lunch.sh` automatycznie ustawi zmienne środowiskowe, uruchomi Docker Compose i zbuduje wszystkie kontenery. Po uruchomieniu aplikacji serwis Django będzie dostępny na porcie `8000`, a aplikacja frontendowa Next.js na porcie `3000`.
+The `lunch.sh` script automatically sets environment variables, runs Docker Compose, and builds all containers. After starting the application, the Django service will be available on port `8000`, and the Next.js frontend will be available on port `3000`.
 
-2. Po zakończeniu uruchamiania, frontend aplikacji będzie dostępny pod adresem: [http://localhost:3000](http://localhost:3000).
+2. Once the application is up, the frontend will be accessible at: [http://localhost:3000](http://localhost:3000).
 
-### 3. Inne komendy
+### 3. Other Commands
 
-- Aby zatrzymać serwisy:
+- To stop the services:
 
 ```bash
 docker-compose down
 ```
 
-- Aby wyczyścić dane bazy danych i uruchomić migracje:
+- To clear the database and run migrations:
 
 ```bash
 docker-compose exec django python manage.py flush --no-input
 docker-compose exec django python manage.py migrate
 ```
 
-## Użytkownicy
+## Users
 
-Aplikacja obsługuje dwa typy użytkowników:
+The application supports two types of users:
 
 - **Administrator**:
   - Login: `admin`
-  - Hasło: `password`
-- **Zwykły użytkownik**:
+  - Password: `password`
+- **Regular User**:
   - Login: `user`
-  - Hasło: `password`
+  - Password: `password`
 
-### 5. Dostępne URL-e
+### 5. Available URLs
 
-- **Panel administracyjny Django**:
+- **Django Admin Panel**:
 
-  - Adres: [http://localhost:8000/admin](http://localhost:8000/admin)
+  - URL: [http://localhost:8000/admin](http://localhost:8000/admin)
 
-- **Dokumentacja API (Redoc)**:
-  - Adres: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+- **API Documentation (Redoc)**:
+  - URL: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+
+## Improvements and Known Issues
+
+While the application works as intended, there are some areas that can be improved or extended:
+
+- **Refresh Token Logic**: Currently, the application does not implement refresh token logic. Adding token refresh functionality to maintain long-lived sessions could enhance security and usability.
+- **Full CRUD for Books**: The application currently supports adding and viewing books, but it could be extended to include full CRUD functionality (Create, Read, Update, Delete) for books from the frontend.
+- **User Management**: Users can be added and managed from the backend, but adding the ability to manage users (create and delete) directly from the frontend would improve user experience.
+- **Testing**: There is no test coverage for the backend or frontend. Writing unit and integration tests would help ensure the application works correctly and prevent regressions during future changes.
+- **Dockerization Improvements**: The Docker setup could be enhanced by adding multi-stage builds to optimize the image size and improve performance.
+- **Security**: Consider improving security features, such as rate limiting, user role management, and validation for inputs from the frontend.
+
+## Conclusion
+
+This application provides a simple yet functional book tracker with basic user and book management. While it works in its current form, there are several areas for improvement that could make the system more robust and user-friendly.
