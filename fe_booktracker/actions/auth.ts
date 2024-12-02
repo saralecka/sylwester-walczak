@@ -1,24 +1,27 @@
-'use server'
+import { signIn, SignInOptions } from "next-auth/react";
 
-import { AuthError } from "next-auth"
-import { signIn } from "next-auth/react"
+const formDataToObject = (formData: FormData): Record<string, string> => {
+  const formObject: Record<string, string> = {};
+  formData.forEach((value, key) => {
+    formObject[key] = value.toString();
+  });
+  return formObject;
+};
 
 export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
+  formData: FormData
+): Promise<string | undefined> {
   try {
-    await signIn('credentials', formData)
+    const formObject = formDataToObject(formData);
+    await signIn("credentials", formObject as SignInOptions);
   } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case "CredentialsSignin":
-          return 'Nieprawidłowe dane logowania.'
-        default:
-          return 'Coś poszło nie tak.'
+    if (error instanceof Error) {
+      if ((error as any).type === "CredentialsSignin") {
+        return "Nieprawidłowe dane logowania.";
+      } else {
+        return "Coś poszło nie tak.";
       }
     }
-    throw error
+    throw error;
   }
 }
-

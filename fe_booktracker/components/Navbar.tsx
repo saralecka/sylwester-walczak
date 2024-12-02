@@ -6,12 +6,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export function Navbar() {
   const { data: session } = useSession();
   const username = session?.user?.username || "Użytkownik";
- // TODO: Fix types
   const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
   const initials = username
     .split(" ")
-    .map((username) => username[0])
+    .map((name) => name[0])
     .join("")
     .toUpperCase()
     .slice(0, 2);
@@ -25,6 +24,7 @@ export function Navbar() {
           <Avatar>
             <AvatarImage
               src={`https://source.boringavatars.com/beam/120/${username}?colors=${randomColor}`}
+              alt={`${username}'s avatar`}
             />
             <AvatarFallback style={{ backgroundColor: `#${randomColor}` }}>
               {initials}
