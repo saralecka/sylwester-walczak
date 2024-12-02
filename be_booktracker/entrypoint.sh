@@ -13,5 +13,8 @@ fi
 
 python manage.py flush --no-input
 python manage.py migrate
+python manage.py loaddata xauth/fixtures/users.json
+python manage.py loaddata books/fixtures/books.json
+
 
 exec "$@"

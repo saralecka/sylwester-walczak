@@ -23,7 +23,6 @@ export function Navbar() {
           <span>Witaj, {username}!</span>
           <Avatar>
             <AvatarImage
-              src={`https://source.boringavatars.com/beam/120/${username}?colors=${randomColor}`}
               alt={`${username}'s avatar`}
             />
             <AvatarFallback style={{ backgroundColor: `#${randomColor}` }}>
