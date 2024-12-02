@@ -22,5 +22,20 @@ services:
     depends_on:
       - db
 
+  nextjs:
+    build:
+      context: ./fe_booktracker
+      dockerfile: Dockerfile
+    container_name: bookkeeper_nextjs
+    env_file:
+      - ./fe_booktracker/.env
+    command: npm run dev
+    volumes:
+      - ./fe_booktracker:/usr/src/app/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - django
+
 volumes:
   postgres_data:

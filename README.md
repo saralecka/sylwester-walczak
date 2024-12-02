@@ -1,40 +1,59 @@
 # Book Tracker
 
-A full-stack application to track books read by users.
+**Book Tracker** to aplikacja do zarządzania książkami, pozwalająca na dodawanie książek, zarządzanie danymi użytkowników oraz integrację z bazą danych PostgreSQL. Projekt zawiera backend oparty na Django oraz frontend w Next.js.
 
-## Features
+## Uruchamianie aplikacji
 
-- Add books with title, author, ISBN, pages, and rating.
-- List books.
-- Data is saved in a database.
-- Search functionality for title and author.
+### 1. Prerekwizyty
 
-## Technologies
+Aby uruchomić aplikację, musisz mieć zainstalowane:
 
-- Frontend: React + TypeScript
-- Backend: Django + DRF
-- Database: PostgreSQL
+- [Docker](https://www.docker.com/get-started) (do uruchomienia aplikacji w kontenerach)
+- [Docker Compose](https://docs.docker.com/compose/install/) (do łatwego zarządzania wieloma kontenerami)
 
-## Setup
+### 2. Uruchomienie aplikacji
 
-1. Clone the repository:
+1. **Uruchomienie wszystkich serwisów** (Django, Next.js, PostgreSQL):
 
-   ```
-   git clone https://github.com/sylwesterwalczak/book-tracker-.git
+```bash
+./lunch.sh
+```
 
-   ```
+Skript `lunch.sh` automatycznie ustawi zmienne środowiskowe, uruchomi Docker Compose i zbuduje wszystkie kontenery. Po uruchomieniu aplikacji serwis Django będzie dostępny na porcie `8000`, a aplikacja frontendowa Next.js na porcie `3000`.
 
-2. Setup backend:
+2. Po zakończeniu uruchamiania, frontend aplikacji będzie dostępny pod adresem: [http://localhost:3000](http://localhost:3000).
 
-   ```
-   docker compose up --build
-   ```
+### 3. Inne komendy
 
-## Access
+- Aby zatrzymać serwisy:
 
-- Backend API is available at `http://localhost:8000/api/`
-- Backend Admin at `http://localhost:8000/admin/`
+```bash
+docker-compose down
+```
 
-## Author
+- Aby wyczyścić dane bazy danych i uruchomić migracje:
 
-- Sylwester Walczak
+```bash
+docker-compose exec django python manage.py flush --no-input
+docker-compose exec django python manage.py migrate
+```
+
+## Użytkownicy
+
+Aplikacja obsługuje dwa typy użytkowników:
+
+- **Administrator**:
+  - Login: `admin`
+  - Hasło: `password`
+- **Zwykły użytkownik**:
+  - Login: `user`
+  - Hasło: `password`
+
+### 5. Dostępne URL-e
+
+- **Panel administracyjny Django**:
+
+  - Adres: [http://localhost:8000/admin](http://localhost:8000/admin)
+
+- **Dokumentacja API (Redoc)**:
+  - Adres: [http://localhost:8000/redoc](http://localhost:8000/redoc)

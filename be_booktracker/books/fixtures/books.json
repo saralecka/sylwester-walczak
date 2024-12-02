@@ -1,0 +1,222 @@
+[
+    {
+        "model": "books.book",
+        "pk": 1,
+        "fields": {
+            "title": "Learning Python",
+            "author": "Mark Lutz",
+            "isbn": "9781449355739",
+            "num_pages": 1648,
+            "rating": 5
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 2,
+        "fields": {
+            "title": "Python Crash Course",
+            "author": "Eric Matthes",
+            "isbn": "9781593279288",
+            "num_pages": 560,
+            "rating": 5
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 3,
+        "fields": {
+            "title": "Automate the Boring Stuff with Python",
+            "author": "Al Sweigart",
+            "isbn": "9781593279929",
+            "num_pages": 592,
+            "rating": 5
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 4,
+        "fields": {
+            "title": "Fluent Python",
+            "author": "Luciano Ramalho",
+            "isbn": "9781491946008",
+            "num_pages": 793,
+            "rating": 5
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 5,
+        "fields": {
+            "title": "Python for Data Analysis",
+            "author": "Wes McKinney",
+            "isbn": "9781491957668",
+            "num_pages": 552,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 6,
+        "fields": {
+            "title": "Python Tricks",
+            "author": "Dan Bader",
+            "isbn": "9781775093351",
+            "num_pages": 256,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 7,
+        "fields": {
+            "title": "Effective Python",
+            "author": "Brett Slatkin",
+            "isbn": "9780134034287",
+            "num_pages": 256,
+            "rating": 5
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 8,
+        "fields": {
+            "title": "Python Cookbook",
+            "author": "David Beazley, Brian K. Jones",
+            "isbn": "9781449340377",
+            "num_pages": 706,
+            "rating": 5
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 9,
+        "fields": {
+            "title": "Python Machine Learning",
+            "author": "Sebastian Raschka, Vahid Mirjalili",
+            "isbn": "9781800567703",
+            "num_pages": 540,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 10,
+        "fields": {
+            "title": "Python for Beginners",
+            "author": "Jesse J. Sandoval",
+            "isbn": "9781800957002",
+            "num_pages": 220,
+            "rating": 3
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 11,
+        "fields": {
+            "title": "Python Deep Learning",
+            "author": "Francois Chollet",
+            "isbn": "9781788621752",
+            "num_pages": 800,
+            "rating": 5
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 12,
+        "fields": {
+            "title": "Test-Driven Development with Python",
+            "author": "Harry J.W. Percival",
+            "isbn": "9781491958696",
+            "num_pages": 600,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 13,
+        "fields": {
+            "title": "Python Data Science Handbook",
+            "author": "Jake VanderPlas",
+            "isbn": "9781491912058",
+            "num_pages": 548,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 14,
+        "fields": {
+            "title": "Django for Beginners",
+            "author": "William S. Vincent",
+            "isbn": "9781733641614",
+            "num_pages": 200,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 15,
+        "fields": {
+            "title": "Learning Python Programming",
+            "author": "Srinivasan S",
+            "isbn": "9781838554059",
+            "num_pages": 590,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 16,
+        "fields": {
+            "title": "Beginning Python",
+            "author": "James Payne",
+            "isbn": "9781118921441",
+            "num_pages": 432,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 17,
+        "fields": {
+            "title": "Python for Kids",
+            "author": "Jason R. Briggs",
+            "isbn": "9781593274078",
+            "num_pages": 324,
+            "rating": 3
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 18,
+        "fields": {
+            "title": "Python 101",
+            "author": "Mike Dawson",
+            "isbn": "9781937585971",
+            "num_pages": 296,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 19,
+        "fields": {
+            "title": "Python for Data Science for Dummies",
+            "author": "John Paul Mueller, Luca Massaron",
+            "isbn": "9781119218361",
+            "num_pages": 432,
+            "rating": 4
+        }
+    },
+    {
+        "model": "books.book",
+        "pk": 20,
+        "fields": {
+            "title": "Data Science from Scratch",
+            "author": "Joel Grus",
+            "isbn": "9781492041139",
+            "num_pages": 500,
+            "rating": 4
+        }
+    }
+]
