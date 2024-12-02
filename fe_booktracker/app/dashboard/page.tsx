@@ -1,13 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 import { Navbar } from "@/components/Navbar";
-import { Button } from "@/components/ui/button";
+import { BookList } from "@/components/BookList";
+
+import { Loader } from "@/components/Loader";
+import { AddBookModal } from "@/components/AddBookModal";
 
 export default function DashboardPage() {
+  const [refetch, setRefetch] = useState(false);
+
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -17,25 +23,36 @@ export default function DashboardPage() {
     }
   }, [status, router]);
 
+  useEffect(() => {
+    if (refetch) {
+      setRefetch(false);
+    }
+  }, [refetch]);
+
   if (status === "loading") {
-    return <div>Ładowanie...</div>;
+    return <Loader />;
   }
 
   if (!session) {
     return null;
   }
 
-//   TODO: Add list and modal to add
   return (
     <div className="flex flex-col min-h-screen">
-    <Navbar />
-    <main className="container mx-auto flex-grow p-6">
-      <h1 className="text-3xl font-bold mb-6">Witaj, {session.user?.name || "użytkowniku"}!</h1>
-      <div className="space-y-4">
-        <p className="text-lg">Zarządzaj swoimi książkami w jednym miejscu!</p>
-        <Button onClick={() => console.log("Dodaj książkę!")}>Dodaj książkę</Button>
-      </div>
-    </main>
-  </div>
+      <Navbar />
+      <main className="container mx-auto flex-grow p-6">
+        <h1 className="text-3xl font-bold mb-6">
+          Witaj, {session.user?.username || "użytkowniku"}!
+        </h1>
+        <div className="space-y-4">
+          <p className="text-lg">
+            Zarządzaj swoimi książkami w jednym miejscu!
+          </p>
+          <AddBookModal onBookAdded={() => setRefetch(true)} />
+
+          <BookList refetch={refetch} />
+        </div>
+      </main>
+    </div>
   );
 }

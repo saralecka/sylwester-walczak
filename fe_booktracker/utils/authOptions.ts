@@ -1,5 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
+import { JWT } from "next-auth/jwt";
+import { Session } from "next-auth";
 
 export const authOptions = {
   providers: [
@@ -7,19 +9,23 @@ export const authOptions = {
       name: "Credentials",
       credentials: {
         username: {
-          label: "username",
+          label: "Username",
           type: "text",
           placeholder: "jsmith@example.com",
         },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        if (!credentials?.username || !credentials?.password) {
+          throw new Error("Both username and password are required");
+        }
+
         try {
           const response = await axios.post(
             `${process.env.NEXT_PUBLIC_API_URL}/token/`,
             {
-              username: credentials?.username,
-              password: credentials?.password,
+              username: credentials.username,
+              password: credentials.password,
             }
           );
 
@@ -27,6 +33,7 @@ export const authOptions = {
 
           if (user) {
             return {
+              id: user.id,
               accessToken: user.access,
               refreshToken: user.refresh,
               username: credentials.username,
@@ -42,7 +49,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user) {
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
@@ -50,10 +57,9 @@ export const authOptions = {
       }
       return token;
     },
-    async session({ session, token }) {
-      session.accessToken = token.accessToken;
-      session.refreshToken = token.refreshToken;
-      session.user = { username: token.username };
+    async session({ session, token }: { session: Session; token: JWT }) {
+      session.accessToken = token.accessToken as string;
+      session.user = { username: token.username as string };
       return session;
     },
   },
